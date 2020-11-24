@@ -92,10 +92,12 @@ console.log(quoteObject)
 
 //I learned how to use getElementsbyClassName at https://www.youtube.com/watch?v=dlaYyZ6vW48
 function printQuote(citation) {
-	quoteParagraph = document.getElementsByClassName("quote")
-	sourceParagraph = document.getElementsByClassName("source")
-	quoteParagraph.innerhtml = `${citation.quote}`
-	sourceParagraph.innerhtml = `${citation.source}`
+	
+	let quoteAndSource = `
+	<p class="quote">${citation.quote}</p>
+    <p class="source">${citation.source}</p>
+	`
+	return document.getElementsByClassName('quote-box').innerHTML = quoteAndSource
 }
 
 printQuote(quoteObject)
