@@ -1,106 +1,105 @@
-// This is my first project for Treehouse. 
+
 
 /******************************************
 Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
+by Jim Lupher
 ******************************************/
 
-// For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
-
-/*** 
- * `quotes` array 
-***/
+/*
+This is a simple array of objects containing a quote, its source, 
+a citation if one exists, and a date if one is known. 
+*/
 
 const randomQuotes = [
 	{
 		quote: "He who makes a beast of himself gets rid of the pain of being a man.",
 		source: "Samuel Johnson", 
-		citation: "undefined",
-		date: "unknown"
-	},
-	{
-		quote: "Nothing is true; everything is permitted.",
-		source: "William S. Burroughs",
-		citation: "undefined",
-		date: "unknown"
+		citation: "circa 1760",
+		date: "undefined"
 	},
 	{
 		quote: "Whenever you find yourself on the side of the majority, it is time to pause and reflect.",
 		source: "Mark Twain",
-		citation: "undefined",
-		date: "unknown"
+		citation: "Personal Notebook",
+		date: "1904"
 	},
 	{
 		quote: "Buy the ticket, take the ride.",
 		source: "Hunter S. Thompson",
-		citation: "undefined",
-		date: "unknown"
+		citation: "Fear and Loathing in Las Vegas",
+		date: "1971"
 	},
 	{
-		quote: "May the days be aimless. Do not advance action according to a plan.",
+		quote: "May the days be aimless. Let the seasons drift. Do not advance action according to a plan.",
 		source: "Don Delillo",
-		citation: "undefined",
-		date: "unknown"
+		citation: "White Noise",
+		date: "1985"
 	},
 	{
 		quote: "All human wisdom is summed up in two words: wait and hope.",
 		source: "Alexandre Dumas",
-		citation: "undefined",
-		date: "unknown"
+		citation: "The count of Monte Cristo",
+		date: "1844"
 	},
 	{
 		quote: "What greater gift than the love of a cat.",
 		source: "Charles Dickens",
 		citation: "undefined",
-		date: "unknown"
-	},
-	{
-		quote: "It is never too late to be what you might have been.",
-		source: "George Eliot",
-		citation: "undefined",
-		date: "unknown"
+		date: "undefined"
 	},
 
 ]
 
-/***
- * `getRandomQuote` function
- * This function will generate a number from 0 to the length of the array.
- * It will then assign that number as an index to the array, returning a quote.
-***/
+/*
+This 'getRandomQuote' function generates a random number between 0 and the length of the 
+above array. It then assigns that number to one of the quotes in the array as an index.
+*/
 
 function getRandomQuote(quotes) {
-	let number = Math.floor(Math.random() * quotes.length) 
-	let randomQuote = quotes[number]
-	return randomQuote
+	let number = Math.floor(Math.random() * quotes.length);
+	let randomQuote = quotes[number];
+	return randomQuote;
 }
 
 //Here I am storing the output of getRandomQuote in a variable to be used in the function below
-quoteObject = getRandomQuote(randomQuotes)
-
-console.log(quoteObject)
 
 
-/***
- * `printQuote` function
-***/
-/* function printQuote (randomQuote) {
 
-} */
+/*
+This 'printQuote' function prints the quote to index.html. 
+It checks to see if a citation and date are included and, if so,
+concatenates them to the quote next to the name of the originator of the quote.
+*/
 
-//I learned how to use getElementsbyClassName at https://www.youtube.com/watch?v=dlaYyZ6vW48
-function printQuote(citation) {
+
+//I changed from getElementsbyClass to getElementById due to a suggestion by Nick Bulbeck on Slack 
+function printQuote() {
+
+	let quoteObject = getRandomQuote(randomQuotes);
 	
 	let quoteAndSource = `
-	<p class="quote">${citation.quote}</p>
-    <p class="source">${citation.source}</p>
-	`
-	return document.getElementsByClassName('quote-box').innerHTML = quoteAndSource
+	<p class="quote">${quoteObject.quote}</p>
+	<p class="source">${quoteObject.source}
+	`;
+	/*
+	I was ready to call it quits here, but at this point that I realized 
+	that I'd rushed through the instructions without looking at the 
+	walkthrough, so I added the following, finishing the project.
+	*/
+
+	if (quoteObject.citation !== "undefined") {
+		quoteAndSource += `<span class="citation">${quoteObject.citation}</span>`;
+	};
+	if (quoteObject.date !== "undefined") {
+		quoteAndSource += `<span class="year">${quoteObject.date}</span>`;
+	}
+	quoteAndSource += `</p>`;
+
+	return document.getElementById('quote-box').innerHTML = quoteAndSource;
 }
 
-printQuote(quoteObject)
+printQuote()
 
 /***
  * click event listener for the print quote button
