@@ -62,8 +62,6 @@ function getRandomQuote(quotes) {
 	return randomQuote;
 }
 
-//Here I am storing the output of getRandomQuote in a variable to be used in the function below
-
 
 
 /*
@@ -71,7 +69,6 @@ This 'printQuote' function prints the quote to index.html.
 It checks to see if a citation and date are included and, if so,
 concatenates them to the quote next to the name of the originator of the quote.
 */
-
 
 //I changed from getElementsbyClass to getElementById due to a suggestion by Nick Bulbeck on Slack 
 function printQuote() {
@@ -82,6 +79,7 @@ function printQuote() {
 	<p class="quote">${quoteObject.quote}</p>
 	<p class="source">${quoteObject.source}
 	`;
+	
 	/*
 	I was ready to call it quits here, but at this point that I realized 
 	that I'd rushed through the instructions without looking at the 
